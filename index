@@ -1,0 +1,27 @@
+#!/bin/sh
+set -ex
+>index.lst
+find ./* -type f -name *bps |
+	    while IFS= read file_name; do
+	    
+	    	tar -xf ${file_name} bpsbuild
+	    	version=$(cat bpsbuild|grep version=)
+	    	#version=$(echo $version | sed 's/.*="\([0-9]*\)\"/\1/')
+	    	#version=${version:9:-1}
+	    	
+	    	name=$(cat bpsbuild|grep name=)
+	    	#name=$(echo $name | sed 's/.*="\([0-9]*\)\"/\1/')
+	    	#name=${name:6:-1}
+	    	
+	    	depends=$(cat bpsbuild|grep depends=)
+	    	#depends=$(echo $depends | sed 's/.*="\([0-9]*\)\"/\1/')
+	    	#depends=${depends:9:-1}
+	    	
+	    	echo "$name|$version|$depends">>index.lst
+		
+	    done
+rm -rf bpsbuild
+
+
+mkdir /output -p
+cp -rf index.lst /output
