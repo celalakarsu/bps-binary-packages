@@ -1,2 +1,2 @@
 # bps-packages
-Derlenmiş bps paketleri için extra depo
+Derlenmiş bps paketleri için extra depo.
