@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+name="vte3"
+version="0.74.0"
+description="vte Library providing a virtual terminal emulator widget"
+source="https://gitlab.gnome.org/GNOME/vte/-/archive/${version}/vte-${version}.tar.gz"
+depends="libxkbcommon,libxcb,wayland,libthai,pixman,libpng,pixman,libpcre2,pango,p11-kit,nettle,util-linux,libjpeg-turbo,
+libidn2,icu,harfbuzz,gtk3,glib,gnutls,gmp,gdk-pixbuf,fribidi,fontconfig,expat,libepoxy,dbus,libdatrie,libcloudproviders,
+cairo,bzip2,at-spi2-core,libXfixes,libXi,libXrandr,libXrender,libXext,libXdmcp,libXdamage,libXcursor,libXcomposite,
+libXau,libX11,libxkbcommon"
+group="x11.libs"
+
+#cd vte-$version
+
+setup(){
+cd $SOURCEDIR
+	meson setup $BUILDDIR --prefix=/usr \
+		--libdir=/usr/lib64/ \
+		-D b_lto=false \
+		-D docs=false \
+		-D gtk3=true \
+		-D gtk4=false \
+		-D_systemd=false 
+}
+
+build(){
+    ninja -C $BUILDDIR
+}
+
+package(){
+    DESTDIR=$DESTDIR ninja -C $BUILDDIR install
+}
+

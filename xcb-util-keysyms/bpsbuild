@@ -2,9 +2,9 @@
 name="xcb-util-keysyms"
 version="0.4.1"
 description="X C-language Bindings sample implementations"
-source=("https://www.x.org/archive/individual/lib/xcb-util-keysyms-$version.tar.xz")
+source="https://www.x.org/archive/individual/lib/xcb-util-keysyms-$version.tar.xz"
 depends=()
-group=(x11.libs)
+group="x11.libs"
 
 
 setup(){

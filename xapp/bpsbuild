@@ -2,15 +2,15 @@
 name="xapp"
 version="2.8.0"
 description="Common library for X-Apps project"
-source=("https://github.com/linuxmint/xapp/archive/$version/xapp-${version}.tar.gz")
-depends=(libdbusmenu libgnomekbd vala py3-pygobject make gobject-introspection)
-group=(x11.libs)
+source="https://github.com/linuxmint/xapp/archive/$version/xapp-${version}.tar.gz"
+depends="libdbusmenu,libgnomekbd,vala,py3-pygobject,make,gobject-introspection"
+group="x11.libs"
 
 
 setup(){
 	cd $SOURCEDIR
-    meson setup $BUILDDIR --prefix=/usr \
-        --libdir=/usr/lib64/
+	meson setup $BUILDDIR --prefix=/usr \
+        	--libdir=/usr/lib64/
 }
 
 
