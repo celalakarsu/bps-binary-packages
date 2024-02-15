@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+name="libxcb"
+version="1.16"
+description="X C-language Bindings library"
+source="https://www.x.org/releases/individual/lib/libxcb-$version.tar.xz"
+depends="libXau,libXdmcp,xcb-proto"
+group="x11.libs"
+
+
+setup(){
+    $SOURCEDIR/configure --prefix=/usr \
+        --libdir=/usr/lib64 \
+		--enable-shared \
+		--enable-static \
+		--disable-devel-docs \
+		--without-launchd \
+		--without-doxygen
+}
+
+build(){
+    make
+}
+
+package(){
+    make install DESTDIR=$DESTDIR
+}
+

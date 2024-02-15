@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+name="libXdmcp"
+version="1.1.4"
+description="X.Org X Display Manager Control Protocol library"
+source="https://www.x.org/archive/individual/lib/libXdmcp-$version.tar.xz"
+depends=()
+group="x11.libs"
+
+
+setup(){
+    $SOURCEDIR/configure --prefix=/usr \
+        --libdir=/usr/lib64/
+}
+
+build(){
+    make
+}
+
+package(){
+    make install DESTDIR=$DESTDIR
+}

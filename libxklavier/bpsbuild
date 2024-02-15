@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+name="libxklavier"
+version="5.4"
+description="High-level API for X Keyboard Extension"
+source="https://people.freedesktop.org/~svu/libxklavier-${version}.tar.bz2"
+depends="glib,iso-codes,libxml2"
+group="x11.libs"
+
+
+setup(){
+	autoreconf -fvi
+    $SOURCEDIR/configure --prefix=/usr \
+        --libdir=/usr/lib64/ \
+		--with-xkb-bin-base=/usr/bin \
+      	--with-xkb-base=/usr/share/X11/xkb \
+		--enable-gtk-doc
+}
+
+build(){
+    make
+}
+
+package(){
+    make install DESTDIR=$DESTDIR $jobs
+}
+
